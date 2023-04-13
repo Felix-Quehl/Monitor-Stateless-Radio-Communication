@@ -5,7 +5,7 @@ The downside of Lora is that its communication is connection-less, ergo you cann
 In my case, this would be if the drone goes out of range or the radio communication is disrupted otherwise.
 
 To mittigate this problem, I have invented an novel light weight algorithm heavily inspirerd by vector [clock alrogithm](https://en.wikipedia.org/wiki/Vector_clock) and [heart beat algorithm](https://en.wikipedia.org/wiki/Heartbeat_(computing)).
-It basically a stateless fire-and-forget ping pong to exchange incrementing numbers.
+It basically is a stateless fire-and-forget ping pong to exchange incrementing numbers.
 Thus allowing monitoring of uplink and downlink the radio communication to detect a lost link.
 
 I develop this proof of concept with a pair of two [RangePi](https://shop.sb-components.co.uk/products/range-pi) USB dongles. They are based on [Raspberry Pi RP2040](https://de.wikipedia.org/wiki/RP2040) and LoRa Modules.
