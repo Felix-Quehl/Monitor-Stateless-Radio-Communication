@@ -9,6 +9,7 @@ It basically a stateless fire-and-forget ping pong to exchange incrementing numb
 Thus allowing monitoring of uplink and downlink the radio communication to detect a lost link.
 
 I develop this proof of concept with a pair of two [RangePi](https://shop.sb-components.co.uk/products/range-pi) USB dongles. They are based on [Raspberry Pi RP2040](https://de.wikipedia.org/wiki/RP2040) and LoRa Modules.
+It takes about 15 seconds up to two minutes to complete.
 
 Below you can see the modules working:
 
