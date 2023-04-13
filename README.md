@@ -16,10 +16,6 @@ Below you can see the modules working:
 
 ![](/images/IMG_3246.JPEG)
 
-## Connection not Ensured on First Node
-
-![](/images/IMG_3246.JPEG)
-
 ## First Exchange of "Vector Clock Values" via heart beat broad cast on First Node
 
 ![](/images/IMG_3247.JPEG)
