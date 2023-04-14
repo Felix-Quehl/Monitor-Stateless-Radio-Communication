@@ -9,7 +9,7 @@ It basically is a stateless fire-and-forget ping pong to exchange incrementing n
 Thus allowing monitoring of uplink and downlink the radio communication to detect a lost link.
 
 The below sequence diagram show the algorithm in detail.
-Steps once steps 1 - 6 have been executed the system only needs to loop the steps 5 and 6 indefinitely. 
+Once steps 1 - 6 have been executed the system only needs to loop the steps 5 and 6 indefinitely. 
 
 ```mermaid
 sequenceDiagram;
