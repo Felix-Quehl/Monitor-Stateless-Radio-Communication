@@ -7,7 +7,7 @@ In my case, this would be if the drone goes out of range or the radio communicat
 To mittigate this problem, I have invented an novel light weight algorithm heavily inspirerd by vector [clock alrogithm](https://en.wikipedia.org/wiki/Vector_clock) and [heart beat algorithm](https://en.wikipedia.org/wiki/Heartbeat_(computing)).
 It basically is a stateless fire-and-forget ping pong to exchange incrementing number pair where each node has its own number.
 If both node have the same numbers send with the heart beat the link is stable, if one of the number is off you can derive wheather uplink or downlink is having problems.
-Thus allowing light weight monitoring of uplink and downlink the radio communication to detect a lost link, without chatty callback for every transmission.
+Thus allowing light weight monitoring of uplink and downlink the radio communication to detect a lost link, without chatty callback to acknowledge every transmission.
 
 The below sequence diagram show the algorithm in detail.
 Once steps 1 - 6 have been executed the system only needs to loop the steps 5 and 6 indefinitely. 
