@@ -1,18 +1,19 @@
 # Stateless Radio Uplink and Downlink Monitoring
 
-I am working on a radio controlled drone/robot project. For the radio communication I am using [LoRa](https://de.wikipedia.org/wiki/Long_Range_Wide_Area_Network#LoRa_Allianz) in a [peer-to-peer configuration](https://de.wikipedia.org/wiki/Peer-to-Peer), which is a stateless radio communication technology.
-The downside of stateless radio communcation is that its communication is stateless, ergo you cannot ensure that a transmission has been received accordingly.
-In my case, this would be if the drone goes out of range or the radio communication is disrupted otherwise.
+I am working on a radio-controlled drone/robot project. For the radio communication, I am using [LoRa](https://de.wikipedia.org/wiki/Long_Range_Wide_Area_Network#LoRa_Allianz) in a [peer-to-peer configuration](https://de.wikipedia.org/wiki/Peer-to-Peer), which is a stateless radio communication technology.
+The downside of stateless radio communication is that its communication is stateless.
+Ergo, you can't make sure that a transmission has been received.
+This would be if the drone goes out of range or the radio communication is disrupted otherwise.
 
-To mittigate this problem, I have invented an novel light weight algorithm heavily inspirerd by vector [clock alrogithm](https://en.wikipedia.org/wiki/Vector_clock) and [heart beat algorithm](https://en.wikipedia.org/wiki/Heartbeat_(computing)).
-It basically is a stateless fire-and-forget ping pong to exchange incrementing number pair where each node has its own number.
-If both nodes have the numbers send with the heart beat matching the link can be considered stable,
-if one of the number is off you can derive wheather uplink or downlink is having problems.
-Thus allowing light weight monitoring of uplink and downlink the radio communication to detect a lost link,
-without chatty callback to acknowledge every transmission.
+To mitigate this problem, I have invented a novel lightweight algorithm heavily inspired by the vector [clock alrogithm](https://en.wikipedia.org/wiki/Vector_clock) and [heart beat algorithm](https://en.wikipedia.org/wiki/Heartbeat_(computing)).
+It is a stateless fire-and-forget ping pong to exchange incrementing number pair where each node has its number.
+If both nodes have the numbers sent with the heartbeat matching, the link can be considered stable,
+if one of the numbers is off, you can derive whether the uplink or downlink is having problems.
+Thus allowing lightweight monitoring of uplink and downlink radio communication to detect a lost link,
+without a chatty callback to acknowledge every transmission.
 
-The below sequence diagram show the algorithm in detail.
-Once steps 1 - 6 have been executed the system only needs to loop the steps 5 and 6 indefinitely. 
+The below sequence diagram shows the algorithm in detail.
+Once steps 1 - 6 have been executed, the system only needs to loop steps 5 and 6 indefinitely. 
 
 ```mermaid
 sequenceDiagram;
@@ -27,20 +28,20 @@ sequenceDiagram;
     B->>A: 3.2 send own vector (VB)
     A->>A: 3.3 save peer vector (VB)
     
-    A->>A: 4.1 increment own vector (VA)
+    A->>A: 4.1 increments own vector (VA)
     A->>B: 4.2 send own vector (VA) and peer vector (VB)
     B->>B: 4.3 save new peer vector (VA)
     
     B->>B: 5.1 increment own vector (VB)
     B->>A: 5.2 send own vector (VB) and peer vector (VA)
-    A->>A: 5.3 check if own vector (VA) matches with value received from peer to ensure uplink is stable
-    A->>A: 5.4 check if peer vector (VB) has only incremented by 1 to ensure downlink is stable
+    A->>A: 5.3 check if own vector (VA) matches with the value received from the peer to ensure the uplink is stable
+    A->>A: 5.4 check if peer vector (VB) has only incremented by 1 to ensure the downlink is stable
     A->>A: 5.5 save new peer vector (VB)
     
-    A->>A: 6.1 increment own vector (VA)
+    A->>A: 6.1 increments own vector (VA)
     A->>B: 6.2 send own vector (VA) and peer vector (VB)
-    B->>B: 6.3 check if own vector (VB) matches with value received from peer to ensure uplink is stable
-    B->>B: 6.4 check if peer vector (VA) has only incremented by 1 to ensure downlink is stable
+    B->>B: 6.3 check if own vector (VB) matches with the value received from the peer to ensure the uplink is stable
+    B->>B: 6.4 check if peer vector (VA) has only incremented by 1 to ensure the downlink is stable
     B->>B: 6.5 save new peer vector (VA)
 ```
 
@@ -53,7 +54,7 @@ Below you can see the modules working:
 
 ![](/images/IMG_3246.JPEG)
 
-## First Exchange of "Vector Clock Values" via heart beat broad cast on First Node
+## First Exchange of "Vector Clock Values" via heartbeat broadcast on First Node
 
 ![](/images/IMG_3247.JPEG)
 
